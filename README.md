@@ -35,7 +35,9 @@ class MyApi < Grape::API
     # Annotate action with `paginate`.
     # This will add two optional params: page and per_page
     # You can optionally overwrite the default :per_page setting (10)
-    paginate :per_page => 20
+    # and the :max_per_page(false/disabled) setting which will use a validator to
+    # check that per_page is below the given number.
+    paginate :per_page => 20, :max_per_page => 30
 
     get do
       posts = Post.where(...)
@@ -54,7 +56,7 @@ Now you can make a HTTP request to you are endpoint with `page` (and `per_page`)
 curl -v http://host.dev/api/posts?page=3
 ```
 
-and the response wil be paginated and also will include pagination headers
+and the response will be paginated and also will include pagination headers
 
 ```
 X-Total: 42
