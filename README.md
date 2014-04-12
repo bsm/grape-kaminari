@@ -63,6 +63,8 @@ X-Total: 42
 X-Total-Pages: 5
 X-Page: 3
 X-Per-Page: 10
+X-Next-Page: 4
+X-Prev-Page: 2
 ```
 
 ## Contributing
