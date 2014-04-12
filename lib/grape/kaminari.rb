@@ -11,8 +11,10 @@ module Grape
             collection.page(params[:page]).per(params[:per_page]).tap do |data|
               header "X-Total",       data.total_count.to_s
               header "X-Total-Pages", data.num_pages.to_s
-              header "X-Page",        data.current_page.to_s
               header "X-Per-Page",    params[:per_page].to_s
+              header "X-Page",        data.current_page.to_s
+              header "X-Next-Page",   data.next_page.to_s
+              header "X-Prev-Page",   data.prev_page.to_s
             end
           end
         end
