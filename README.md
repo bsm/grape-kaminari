@@ -50,7 +50,7 @@ class MyApi < Grape::API
 end
 ```
 
-Now you can make a HTTP request to you are endpoint with `page` (and `per_page`) params
+Now you can make a HTTP request to your endpoint with `page` (and `per_page`) params
 
 ```
 curl -v http://host.dev/api/posts?page=3
