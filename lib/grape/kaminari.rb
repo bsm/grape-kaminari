@@ -21,8 +21,8 @@ module Grape
 
         def self.paginate(options = {})
           options.reverse_merge!(
-            per_page: 10,
-            max_per_page: false
+            per_page: ::Kaminari.config.default_per_page || 10,
+            max_per_page: ::Kaminari.config.max_per_page
           )
           params do
             optional :page,     type: Integer, default: 1,
