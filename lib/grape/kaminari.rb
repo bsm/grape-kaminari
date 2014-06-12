@@ -15,7 +15,7 @@ module Grape
               header "X-Page",        data.current_page.to_s
               header "X-Next-Page",   data.next_page.to_s
               header "X-Prev-Page",   data.prev_page.to_s
-              header "X-Page-Offset", data.offset.to_s
+              header "X-Page-Offset", data.offset_value.to_s
             end
           end
         end
