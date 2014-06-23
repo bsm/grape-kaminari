@@ -69,7 +69,7 @@ X-Page: 3
 X-Per-Page: 10
 X-Next-Page: 4
 X-Prev-Page: 2
-X-Page-Offset: 10
+X-Offset: 10
 ```
 
 ## Contributing
