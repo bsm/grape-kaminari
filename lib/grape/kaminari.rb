@@ -8,13 +8,14 @@ module Grape
       base.class_eval do
         helpers do
           def paginate(collection)
-            collection.page(params[:page]).per(params[:per_page]).tap do |data|
+            collection.page(params[:page]).per(params[:per_page]).padding(params[:offset]).tap do |data|
               header "X-Total",       data.total_count.to_s
               header "X-Total-Pages", data.num_pages.to_s
               header "X-Per-Page",    params[:per_page].to_s
               header "X-Page",        data.current_page.to_s
               header "X-Next-Page",   data.next_page.to_s
               header "X-Prev-Page",   data.prev_page.to_s
+              header "X-Offset",      params[:offset].to_s
             end
           end
         end
@@ -30,6 +31,7 @@ module Grape
             optional :per_page, type: Integer, default: options[:per_page],
                                 desc: 'Number of results to return per page.',
                                 max_value: options[:max_per_page]
+            optional :offset,   type: Integer, default: 0
           end
         end
       end

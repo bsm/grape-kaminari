@@ -50,10 +50,14 @@ class MyApi < Grape::API
 end
 ```
 
-Now you can make a HTTP request to your endpoint with `page` (and `per_page`) params
+Now you can make a HTTP request to your endpoint with the following parameters
+
+- `page`: your current page (default: 1)
+- `per_page`: how many to record in a page (default: 10)
+- `offset`: the offset to start from (default: 0)
 
 ```
-curl -v http://host.dev/api/posts?page=3
+curl -v http://host.dev/api/posts?page=3&offset=10
 ```
 
 and the response will be paginated and also will include pagination headers
@@ -65,6 +69,7 @@ X-Page: 3
 X-Per-Page: 10
 X-Next-Page: 4
 X-Prev-Page: 2
+X-Page-Offset: 10
 ```
 
 ## Contributing
