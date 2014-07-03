@@ -1,3 +1,5 @@
+
+require "grape"
 module Grape
   module Kaminari
     class MaxValueValidator < Grape::Validations::SingleOptionValidator
