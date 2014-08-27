@@ -54,7 +54,7 @@ describe Grape::Kaminari do
       end
 
       it 'describes :offset' do
-        expect(params['offset'][:desc]).to eq(nil)
+        expect(params['offset'][:desc]).to eq('Pad a number of results.')
       end
 
       it 'validates :page as Integer' do
@@ -91,7 +91,7 @@ describe Grape::Kaminari do
     def app; subject; end
 
     before do
-      subject.paginate per_page:99, max_per_page: 999
+      subject.paginate per_page:99, max_per_page: 999, offset: 9
       subject.get '/' do; end
     end
     let(:params) {subject.routes.first.route_params}
@@ -111,6 +111,22 @@ describe Grape::Kaminari do
       expect(last_response.body).to match /per_page must be less than 999/
     end
 
+    it 'defaults :offset to customized value' do
+      expect(params['offset'][:default]).to eq(9)
+    end
+
+  end
+
+  #
+  #
+  #
+  describe 'paginated api without :offset' do
+    subject { Class.new(PaginatedAPI) }
+
+    it 'excludes :offset from declared params' do
+      subject.paginate offset: false
+      expect(subject.settings[:declared_params]).not_to include(:offset)
+    end
 
   end
 
