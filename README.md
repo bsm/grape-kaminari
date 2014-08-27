@@ -1,4 +1,4 @@
-# Grape::Kaminari [![Gem Version](https://badge.fury.io/rb/grape-kaminari.png)](http://badge.fury.io/rb/grape-kaminari)[![Circle CI](https://circleci.com/gh/monterail/grape-kaminari.png?style=badge)](https://circleci.com/gh/monterail/grape-kaminari)
+# Grape::Kaminari [![Gem Version](https://badge.fury.io/rb/grape-kaminari.png)](http://badge.fury.io/rb/grape-kaminari)[![Circle CI](https://circleci.com/gh/monterail/grape-kaminari.png?style=shield)](https://circleci.com/gh/monterail/grape-kaminari)
 
 [kaminari](https://github.com/amatsuda/kaminari) paginator integration for [grape](https://github.com/intridea/grape) API framework.
 
