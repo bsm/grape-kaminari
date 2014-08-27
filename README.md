@@ -46,6 +46,14 @@ class MyApi < Grape::API
       # with arguments automatically passed from params
       paginate(posts)
     end
+
+    get do
+      things = ['a', 'standard', 'array', 'of', 'things', '...']
+
+      # Use `Kaminari.paginate_array` method to convert the array
+      # into an object that can be passed to `paginate` helper.
+      paginate(Kaminari.paginate_array(things))
+    end
   end
 end
 ```
