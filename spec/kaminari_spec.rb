@@ -117,9 +117,6 @@ describe Grape::Kaminari do
 
   end
 
-  #
-  #
-  #
   describe 'paginated api without :offset' do
     subject { Class.new(PaginatedAPI) }
 
