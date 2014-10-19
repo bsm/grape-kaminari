@@ -33,11 +33,16 @@ class MyApi < Grape::API
     desc 'Return a list of posts.'
 
     # Annotate action with `paginate`.
-    # This will add two optional params: page and per_page
+    # This will add three optional params: page, per_page, and offset
+    #
     # You can optionally overwrite the default :per_page setting (10)
     # and the :max_per_page(false/disabled) setting which will use a validator to
     # check that per_page is below the given number.
-    paginate :per_page => 20, :max_per_page => 30
+    #
+    # You can disable the offset parameter from appearing in the API
+    # documentation by setting it to false.
+    #
+    paginate per_page: 20, max_per_page: 30, offset: 5
 
     get do
       posts = Post.where(...)
