@@ -23,7 +23,11 @@ describe Grape::Kaminari do
 
     it 'adds to declared parameters' do
       subject.paginate
-      expect(subject.settings[:declared_params]).to eq([:page, :per_page, :offset])
+      if Grape::Kaminari.post_0_9_0_grape
+        expect(subject.inheritable_setting.route[:declared_params]).to eq([:page, :per_page, :offset])
+      else
+        expect(subject.settings[:declared_params]).to eq([:page, :per_page, :offset])
+      end
     end
 
     describe 'descriptions, validation, and defaults' do
@@ -122,7 +126,11 @@ describe Grape::Kaminari do
 
     it 'excludes :offset from declared params' do
       subject.paginate offset: false
-      expect(subject.settings[:declared_params]).not_to include(:offset)
+      if Grape::Kaminari.post_0_9_0_grape
+        expect(subject.inheritable_setting.route[:declared_params]).not_to include(:offset)
+      else
+        expect(subject.settings[:declared_params]).not_to include(:offset)
+      end
     end
 
   end
