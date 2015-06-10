@@ -1,3 +1,4 @@
+require "grape"
 require "grape/kaminari/version"
 require "grape/kaminari/max_value_validator"
 require "kaminari/grape"
