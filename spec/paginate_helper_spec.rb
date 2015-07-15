@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'json'
 
 class PaginatedAPI < Grape::API
   include Grape::Kaminari
