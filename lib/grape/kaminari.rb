@@ -1,14 +1,15 @@
 require "grape/kaminari/version"
 require "grape/kaminari/max_value_validator"
 require "kaminari/grape"
+require "kaminari/page_scope_methods"
 
 module Grape
   module Kaminari
     def self.included(base)
       base.class_eval do
         helpers do
-          def paginate(collection)
-            collection.page(params[:page]).per(params[:per_page]).tap do |data|
+          def paginate(collection, total_count = nil)
+            collection.page(params[:page]).per(params[:per_page]).with_total_count(total_count).tap do |data|
               @options[:route_options][:meta] = {
                 total: data.total_count.to_s,
                 total_pages: data.num_pages.to_s,
