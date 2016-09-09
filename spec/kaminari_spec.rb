@@ -112,7 +112,7 @@ describe Grape::Kaminari do
     it 'ensures :per_page is within :max_value' do
       get('/', page: 1, per_page: 1_000)
       expect(last_response.status).to eq 400
-      expect(last_response.body).to match /per_page must be less than 999/
+      expect(last_response.body).to match /per_page must be less than or equal 999/
     end
 
     it 'defaults :offset to customized value' do
