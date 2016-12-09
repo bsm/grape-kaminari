@@ -1,3 +1,5 @@
+
+require "grape"
 module Grape
   module Kaminari
     base = if post_0_9_0_grape?
