@@ -35,7 +35,7 @@ describe Grape::Kaminari do
         subject.paginate
         subject.get '/' do; end
       end
-      let(:params) {subject.routes.first.route_params}
+      let(:params) {subject.routes.first.params}
 
       it 'does not require :page' do
         expect(params['page'][:required]).to eq(false)
@@ -98,7 +98,7 @@ describe Grape::Kaminari do
       subject.paginate per_page:99, max_per_page: 999, offset: 9
       subject.get '/' do; end
     end
-    let(:params) {subject.routes.first.route_params}
+    let(:params) {subject.routes.first.params}
 
     it 'defaults :per_page to customized value' do
       expect(params['per_page'][:default]).to eq(99)
