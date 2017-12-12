@@ -87,4 +87,4 @@ X-Offset: 10
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/teamon/tesla.
+Bug reports and pull requests are welcome on GitHub at https://github.com/monterail/grape-kaminari.
