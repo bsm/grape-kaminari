@@ -17,12 +17,13 @@ end
 
 describe Grape::Kaminari do
   subject { PaginatedAPI.new }
-  def app; subject; end
+  def app
+    subject
+  end
   let(:json) { JSON.parse(last_response.body) }
   let(:header) { last_response.header }
 
   describe 'paginated helper' do
-
     it 'returns the first page' do
       get '/', page: 1, per_page: 3
       expect(json).to eq [1, 2, 3]
@@ -50,8 +51,5 @@ describe Grape::Kaminari do
       expect(header['X-Prev-Page']).to eq '2'
       expect(header['X-Offset']).to eq '1'
     end
-
   end
-
-
 end
