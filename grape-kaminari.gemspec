@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.start_with?('spec/') }
   spec.test_files    = `git ls-files -z -- spec/*`.split("\x0")
   spec.require_paths = ['lib']
-  spec.required_ruby_version = '>= 2.4'
+  spec.required_ruby_version = '>= 2.5'
 
   spec.add_runtime_dependency 'grape', '>= 1.0'
   spec.add_runtime_dependency 'kaminari-grape'
