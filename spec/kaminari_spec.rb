@@ -9,7 +9,6 @@ class PaginatedAPI < Grape::API
 end
 
 describe Grape::Kaminari do
-
   describe 'unpaginated api' do
     subject { Class.new(UnPaginatedAPI) }
 
@@ -23,19 +22,16 @@ describe Grape::Kaminari do
 
     it 'adds to declared parameters' do
       subject.paginate
-      if Grape::Kaminari.post_0_9_0_grape?
-        expect(subject.inheritable_setting.route[:declared_params]).to eq([:page, :per_page, :offset])
-      else
-        expect(subject.settings[:declared_params]).to eq([:page, :per_page, :offset])
-      end
+      expect(subject.inheritable_setting.route[:declared_params]).to eq(%i[page per_page offset])
     end
 
     describe 'descriptions, validation, and defaults' do
+      let(:params) { subject.routes.first.params }
+
       before do
         subject.paginate
-        subject.get '/' do; end
+        subject.get('/') {}
       end
-      let(:params) {subject.routes.first.route_params}
 
       it 'does not require :page' do
         expect(params['page'][:required]).to eq(false)
@@ -84,21 +80,18 @@ describe Grape::Kaminari do
       it 'defaults :offset to 0' do
         expect(params['offset'][:default]).to eq(0)
       end
-
-
     end
-
   end
 
   describe 'custom paginated api' do
     subject { Class.new(PaginatedAPI) }
-    def app; subject; end
+    let(:app) { subject }
+    let(:params) { subject.routes.first.params }
 
     before do
-      subject.paginate per_page:99, max_per_page: 999, offset: 9
-      subject.get '/' do; end
+      subject.paginate per_page: 99, max_per_page: 999, offset: 9
+      subject.get('/') {}
     end
-    let(:params) {subject.routes.first.route_params}
 
     it 'defaults :per_page to customized value' do
       expect(params['per_page'][:default]).to eq(99)
@@ -112,13 +105,12 @@ describe Grape::Kaminari do
     it 'ensures :per_page is within :max_value' do
       get('/', page: 1, per_page: 1_000)
       expect(last_response.status).to eq 400
-      expect(last_response.body).to match /per_page must be less than or equal 999/
+      expect(last_response.body).to match(/per_page must be less than or equal 999/)
     end
 
     it 'defaults :offset to customized value' do
       expect(params['offset'][:default]).to eq(9)
     end
-
   end
 
   describe 'paginated api without :offset' do
@@ -126,13 +118,7 @@ describe Grape::Kaminari do
 
     it 'excludes :offset from declared params' do
       subject.paginate offset: false
-      if Grape::Kaminari.post_0_9_0_grape?
-        expect(subject.inheritable_setting.route[:declared_params]).not_to include(:offset)
-      else
-        expect(subject.settings[:declared_params]).not_to include(:offset)
-      end
+      expect(subject.inheritable_setting.route[:declared_params]).not_to include(:offset)
     end
-
   end
-
 end
