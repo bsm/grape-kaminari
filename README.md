@@ -1,6 +1,9 @@
-# Grape::Kaminari [![Gem Version](https://badge.fury.io/rb/grape-kaminari.png)](http://badge.fury.io/rb/grape-kaminari) [![Circle CI](https://circleci.com/gh/monterail/grape-kaminari.png?style=shield)](https://circleci.com/gh/monterail/grape-kaminari)
+# Grape::Kaminari
 
-[kaminari](https://github.com/amatsuda/kaminari) paginator integration for [grape](https://github.com/intridea/grape) API framework.
+[![Build Status](https://travis-ci.org/bsm/grape-kaminari.png?branch=master)](https://travis-ci.org/bsm/grape-kaminari)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+[kaminari](https://github.com/kaminari/kaminari) paginator integration for [grape](https://github.com/intridea/grape) API framework.
 
 ## Installation
 
@@ -87,4 +90,4 @@ X-Offset: 10
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/teamon/tesla.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bsm/grape-kaminari.
