@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grape-kaminari (0.2.0)
+    grape-kaminari (0.2.1)
       grape (>= 1.0)
       kaminari-grape
 

@@ -3,7 +3,7 @@ module Grape
     class MaxValueValidator < Grape::Validations::Base
       def validate_param!(attr_name, params)
         attr = params[attr_name]
-        return unless attr && @option && attr > @option
+        return unless attr.is_a?(Integer) && @option && attr > @option
 
         raise Grape::Exceptions::Validation.new(
           params: [@scope.full_name(attr_name)],
