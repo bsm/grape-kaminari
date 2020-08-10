@@ -13,13 +13,18 @@ class PaginatedAPI < Grape::API
   get 'no-offset' do
     paginate(Kaminari.paginate_array((1..10).to_a))
   end
+
+  resource :sub do
+    paginate per_page: 2
+    get '/' do
+      paginate(Kaminari.paginate_array((1..10).to_a))
+    end
+  end
 end
 
 describe Grape::Kaminari do
   subject { PaginatedAPI.new }
-  def app
-    subject
-  end
+  let(:app)  { subject }
   let(:json) { JSON.parse(last_response.body) }
   let(:header) { last_response.header }
 
@@ -50,6 +55,11 @@ describe Grape::Kaminari do
       expect(header['X-Next-Page']).to eq '4'
       expect(header['X-Prev-Page']).to eq '2'
       expect(header['X-Offset']).to eq '1'
+    end
+
+    it 'can be inherited' do
+      get '/sub', page: 1
+      expect(json).to eq [1, 2]
     end
   end
 end
