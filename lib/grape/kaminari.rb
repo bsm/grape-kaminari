@@ -5,6 +5,13 @@ require 'kaminari/grape'
 
 module Grape
   module Kaminari
+    extend ActiveSupport::Concern
+
+    included do
+      helpers HelperMethods
+      base_instance.extend DSLMethods
+    end
+
     module HelperMethods # :nodoc:
       def paginate(collection)
         collection.page(params[:page].to_i)
@@ -22,7 +29,7 @@ module Grape
       end
     end
 
-    module ClassMethods # :nodoc:
+    module DSLMethods # :nodoc:
       def paginate(**options)
         options.reverse_merge!(
           per_page: ::Kaminari.config.default_per_page || 10,
@@ -41,11 +48,6 @@ module Grape
           end
         end
       end
-    end
-
-    def self.included(base)
-      base.helpers HelperMethods
-      base.extend ClassMethods
     end
   end
 end
