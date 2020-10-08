@@ -9,10 +9,30 @@ module Grape
 
     included do
       helpers HelperMethods
-      base_instance.extend DSLMethods
     end
 
     module HelperMethods # :nodoc:
+      extend Grape::API::Helpers
+
+      params :pagination do |opts = {}|
+        opts.reverse_merge!(
+          per_page: ::Kaminari.config.default_per_page || 10,
+          max_per_page: ::Kaminari.config.max_per_page,
+          offset: 0,
+        )
+
+        optional :page, type: Integer, default: 1,
+                        desc: 'Page offset to fetch.'
+        optional :per_page, type: Integer, default: opts[:per_page],
+                            desc: 'Number of results to return per page.',
+                            max_value: opts[:max_per_page]
+
+        if opts[:offset].is_a?(Integer)
+          optional :offset, type: Integer, default: opts[:offset],
+                            desc: 'Pad a number of results.'
+        end
+      end
+
       def paginate(collection)
         collection.page(params[:page].to_i)
                   .per(params[:per_page].to_i)
@@ -30,24 +50,12 @@ module Grape
     end
 
     module DSLMethods # :nodoc:
-      def paginate(**options)
-        options.reverse_merge!(
-          per_page: ::Kaminari.config.default_per_page || 10,
-          max_per_page: ::Kaminari.config.max_per_page,
-          offset: 0,
-        )
+      def paginate(opts = {})
         params do
-          optional :page,     type: Integer, default: 1,
-                              desc: 'Page offset to fetch.'
-          optional :per_page, type: Integer, default: options[:per_page],
-                              desc: 'Number of results to return per page.',
-                              max_value: options[:max_per_page]
-          if  options[:offset].is_a? Numeric
-            optional :offset, type: Integer, default: options[:offset],
-                              desc: 'Pad a number of results.'
-          end
+          use(:pagination, opts)
         end
       end
     end
+    Grape::API::Instance.extend(DSLMethods)
   end
 end

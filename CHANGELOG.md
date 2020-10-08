@@ -1,13 +1,23 @@
-### 0.4.0 (Next)
+### 0.5.0 (Next)
 
 #### Features
 
 * Your contribution here.
-* [#56](https://github.com/bsm/grape-kaminari/pull/56): Introduce a CHANGELOG - [@dim](https://github.com/dim).
 
 #### Fixes
 
 * Your contribution here.
+
+### 0.4.0
+
+#### Features
+
+* [#57](https://github.com/bsm/grape-kaminari/pull/57): Introduce new params based API - [@dim](https://github.com/dim).
+* [#56](https://github.com/bsm/grape-kaminari/pull/56): Introduce a CHANGELOG - [@dim](https://github.com/dim).
+
+#### Fixes
+
+* [#57](https://github.com/bsm/grape-kaminari/pull/57): Fix issues related to Grape v1.5 release - [@dim](https://github.com/dim).
 
 ### 0.3.0 (2020/08/10)
 
