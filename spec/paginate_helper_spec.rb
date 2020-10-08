@@ -4,18 +4,24 @@ require 'json'
 class PaginatedAPI < Grape::API
   include Grape::Kaminari
 
-  paginate
+  params do
+    use :pagination
+  end
   get '' do
     paginate(Kaminari.paginate_array((1..10).to_a))
   end
 
-  paginate offset: false
+  params do
+    use :pagination, offset: false
+  end
   get 'no-offset' do
     paginate(Kaminari.paginate_array((1..10).to_a))
   end
 
   resource :sub do
-    paginate per_page: 2
+    params do
+      use :pagination, per_page: 2
+    end
     get '/' do
       paginate(Kaminari.paginate_array((1..10).to_a))
     end
