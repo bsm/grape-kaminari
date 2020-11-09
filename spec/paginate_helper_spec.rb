@@ -18,6 +18,13 @@ class PaginatedAPI < Grape::API
     paginate(Kaminari.paginate_array((1..10).to_a))
   end
 
+  params do
+    use :pagination, offset: false
+  end
+  get 'no-count' do
+    paginate(Kaminari.paginate_array((1..10).to_a), without_count: true)
+  end
+
   resource :sub do
     params do
       use :pagination, per_page: 2
@@ -52,15 +59,32 @@ describe Grape::Kaminari do
       expect(json).to eq [1, 2, 3]
     end
 
+    it 'works without count' do
+      get '/no-count', page: 2, per_page: 3
+      expect(json).to eq [4, 5, 6]
+      expect(header).to include(
+        'X-Per-Page' => '3',
+        'X-Page' => '2',
+        'X-Next-Page' => '3',
+        'X-Prev-Page' => '1',
+      )
+      expect(header).not_to include(
+        'X-Total',
+        'X-Total-Pages',
+      )
+    end
+
     it 'sets headers' do
       get '/', page: 3, per_page: 2, offset: 1
-      expect(header['X-Total']).to eq '10'
-      expect(header['X-Total-Pages']).to eq '5'
-      expect(header['X-Per-Page']).to eq '2'
-      expect(header['X-Page']).to eq '3'
-      expect(header['X-Next-Page']).to eq '4'
-      expect(header['X-Prev-Page']).to eq '2'
-      expect(header['X-Offset']).to eq '1'
+      expect(header).to include(
+        'X-Total' => '10',
+        'X-Total-Pages' => '5',
+        'X-Per-Page' => '2',
+        'X-Page' => '3',
+        'X-Next-Page' => '4',
+        'X-Prev-Page' => '2',
+        'X-Offset' => '1',
+      )
     end
 
     it 'can be inherited' do
