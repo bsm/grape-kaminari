@@ -8,6 +8,12 @@
 
 * Your contribution here.
 
+### 0.4.1
+
+#### Features
+
+* [#58](https://github.com/bsm/grape-kaminari/pull/58): Allow to paginate without counting - [@dim](https://github.com/dim).
+
 ### 0.4.0
 
 #### Features

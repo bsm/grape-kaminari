@@ -39,7 +39,7 @@ describe Grape::Kaminari do
 
     before do
       subject.params { use :pagination }
-      subject.get('/') {}
+      subject.get('/') { 'OK' }
     end
 
     it 'does not require :page' do
@@ -101,7 +101,7 @@ describe 'custom paginated api' do
     subject.params do
       use :pagination, per_page: 99, max_per_page: 999, offset: 9
     end
-    subject.get('/') {}
+    subject.get('/') { 'OK' }
   end
 
   it 'defaults :per_page to customized value' do

@@ -33,19 +33,23 @@ module Grape
         end
       end
 
-      def paginate(collection)
-        collection.page(params[:page].to_i)
-                  .per(params[:per_page].to_i)
-                  .padding(params[:offset].to_i)
-                  .tap do |data|
-          header 'X-Total',       data.total_count.to_s
-          header 'X-Total-Pages', data.total_pages.to_s
-          header 'X-Per-Page',    data.limit_value.to_s
-          header 'X-Page',        data.current_page.to_s
-          header 'X-Next-Page',   data.next_page.to_s
-          header 'X-Prev-Page',   data.prev_page.to_s
-          header 'X-Offset',      params[:offset].to_s
+      def paginate(collection, without_count: false)
+        coll = collection.page(params[:page].to_i)
+                         .per(params[:per_page].to_i)
+                         .padding(params[:offset].to_i)
+        coll = coll.without_count if without_count && coll.respond_to?(:without_count)
+
+        unless without_count
+          header 'X-Total', coll.total_count.to_s
+          header 'X-Total-Pages', coll.total_pages.to_s
         end
+        header 'X-Per-Page',    coll.limit_value.to_s
+        header 'X-Page',        coll.current_page.to_s
+        header 'X-Next-Page',   coll.next_page.to_s
+        header 'X-Prev-Page',   coll.prev_page.to_s
+        header 'X-Offset',      params[:offset].to_s
+
+        coll
       end
     end
 
