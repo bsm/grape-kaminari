@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = ''
   spec.license       = 'MIT'
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.start_with?('spec/') }
+  spec.files         = `git ls-files -z`.split("\x0").reject {|f| f.start_with?('spec/') }
   spec.test_files    = `git ls-files -z -- spec/*`.split("\x0")
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 2.5'
@@ -24,5 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rack-test'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-bsm'
 end

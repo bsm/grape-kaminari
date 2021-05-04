@@ -4,7 +4,7 @@ require 'rack/test'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
-Dir[File.expand_path('./support/**/*.rb', __dir__)].sort.each { |f| require f }
+Dir[File.expand_path('./support/**/*.rb', __dir__)].sort.each {|f| require f }
 
 I18n.enforce_available_locales = false
 
