@@ -1,6 +1,6 @@
 # Grape::Kaminari
 
-[![Build Status](https://travis-ci.org/bsm/grape-kaminari.png?branch=master)](https://travis-ci.org/bsm/grape-kaminari)
+[![Test](https://github.com/bsm/grape-kaminari/actions/workflows/test.yml/badge.svg)](https://github.com/bsm/grape-kaminari/actions/workflows/test.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [kaminari](https://github.com/kaminari/kaminari) paginator integration for [grape](https://github.com/intridea/grape) API framework.

@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-class PaginatedAPI < Grape::API
-  include Grape::Kaminari
-end
-
 describe Grape::Kaminari do
-  subject { Class.new(PaginatedAPI) }
+  subject do
+    Class.new(Grape::API) do
+      include Grape::Kaminari
+    end
+  end
 
   def declared_params
     subject.namespace_stackable(:declared_params).flatten
@@ -21,12 +21,12 @@ describe Grape::Kaminari do
     expect(declared_params).to eq(%i[page per_page])
   end
 
-  it 'should support legacy declarations' do
+  it 'supports legacy declarations' do
     subject.paginate
     expect(declared_params).to eq(%i[page per_page offset])
   end
 
-  it 'should not stumble across repeated declarations' do
+  it 'does not stumble across repeated declarations' do
     subject.paginate offset: false
     subject.params do
       optional :extra
@@ -90,42 +90,41 @@ describe Grape::Kaminari do
       expect(params['offset'][:default]).to eq(0)
     end
   end
-end
 
-describe 'custom paginated api' do
-  subject { Class.new(PaginatedAPI) }
-  let(:app) { subject }
-  let(:params) { subject.routes.first.params }
+  describe 'custom paginated api' do
+    let(:app) { subject }
+    let(:params) { subject.routes.first.params }
 
-  before do
-    subject.params do
-      use :pagination, per_page: 99, max_per_page: 999, offset: 9
+    before do
+      subject.params do
+        use :pagination, per_page: 99, max_per_page: 999, offset: 9
+      end
+      subject.get('/') { 'OK' }
     end
-    subject.get('/') { 'OK' }
-  end
 
-  it 'defaults :per_page to customized value' do
-    expect(params['per_page'][:default]).to eq(99)
-  end
+    it 'defaults :per_page to customized value' do
+      expect(params['per_page'][:default]).to eq(99)
+    end
 
-  it 'succeeds when :per_page is within :max_value' do
-    get('/', page: 1, per_page: 999)
-    expect(last_response.status).to eq(200)
-  end
+    it 'succeeds when :per_page is within :max_value' do
+      get('/', page: 1, per_page: 999)
+      expect(last_response.status).to eq(200)
+    end
 
-  it 'ensures :per_page is within :max_value' do
-    get('/', page: 1, per_page: 1_000)
-    expect(last_response.status).to eq(400)
-    expect(last_response.body).to match(/per_page must be less than or equal 999/)
-  end
+    it 'ensures :per_page is within :max_value' do
+      get('/', page: 1, per_page: 1_000)
+      expect(last_response.status).to eq(400)
+      expect(last_response.body).to match(/per_page must be less than or equal 999/)
+    end
 
-  it 'ensures :per_page is numeric' do
-    get('/', page: 1, per_page: 'foo')
-    expect(last_response.status).to eq(400)
-    expect(last_response.body).to match(/per_page is invalid/)
-  end
+    it 'ensures :per_page is numeric' do
+      get('/', page: 1, per_page: 'foo')
+      expect(last_response.status).to eq(400)
+      expect(last_response.body).to match(/per_page is invalid/)
+    end
 
-  it 'defaults :offset to customized value' do
-    expect(params['offset'][:default]).to eq(9)
+    it 'defaults :offset to customized value' do
+      expect(params['offset'][:default]).to eq(9)
+    end
   end
 end

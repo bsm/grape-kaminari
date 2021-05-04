@@ -8,5 +8,6 @@ inherit_mode:
 AllCops:
   TargetRubyVersion: "2.5"
 
-RSpec/FilePath:
-  Enabled: false
+Naming/FileName:
+  Exclude:
+    - lib/grape-kaminari.rb
