@@ -1,26 +1,12 @@
+inherit_gem:
+  rubocop-bsm:
+    - default.yml
+inherit_mode:
+  merge:
+    - Exclude
+
 AllCops:
   TargetRubyVersion: "2.5"
-  NewCops: enable
 
-Metrics/AbcSize:
+RSpec/FilePath:
   Enabled: false
-Metrics/BlockLength:
-  Exclude:
-    - spec/**/*_spec.rb
-Metrics/MethodLength:
-  Max: 20
-
-Naming/FileName:
-  Exclude:
-    - lib/grape-kaminari.rb
-
-Style/Documentation:
-  Enabled: false
-Style/FrozenStringLiteralComment:
-  Enabled: false
-Style/TrailingCommaInArguments:
-  EnforcedStyleForMultiline: consistent_comma
-Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline: consistent_comma
-Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: consistent_comma
