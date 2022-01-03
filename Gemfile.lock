@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grape-kaminari (0.4.1)
+    grape-kaminari (0.4.2)
       grape (>= 1.6.1, != 1.4.0)
       kaminari-grape
 
@@ -127,4 +127,4 @@ DEPENDENCIES
   rubocop-bsm
 
 BUNDLED WITH
-   2.2.32
+   2.1.4
