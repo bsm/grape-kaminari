@@ -1,6 +1,6 @@
 module Grape
   module Kaminari
-    class MaxValueValidator < Grape::Validations::Base
+    class MaxValueValidator < Grape::Validations::Validators::Base
       def validate_param!(attr_name, params)
         attr = params[attr_name]
         return unless attr.is_a?(Integer) && @option && attr > @option
