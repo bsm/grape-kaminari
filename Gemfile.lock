@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     grape-kaminari (0.4.1)
-      grape (>= 1.0, != 1.4.0)
+      grape (>= 1.6.1, != 1.4.0)
       kaminari-grape
 
 GEM
@@ -36,7 +36,7 @@ GEM
       dry-core (~> 0.5, >= 0.5)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
-    grape (1.5.3)
+    grape (1.6.2)
       activesupport
       builder
       dry-types (>= 1.1)
@@ -127,4 +127,4 @@ DEPENDENCIES
   rubocop-bsm
 
 BUNDLED WITH
-   2.1.4
+   2.2.32
