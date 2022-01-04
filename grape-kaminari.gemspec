@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 2.5'
 
-  spec.add_runtime_dependency 'grape', '>= 1.0', '!= 1.4.0'
+  spec.add_runtime_dependency 'grape', '>= 1.6.1', '!= 1.4.0'
   spec.add_runtime_dependency 'kaminari-grape'
 
   spec.add_development_dependency 'bundler'
