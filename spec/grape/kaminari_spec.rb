@@ -43,15 +43,15 @@ describe Grape::Kaminari do
     end
 
     it 'does not require :page' do
-      expect(params['page'][:required]).to eq(false)
+      expect(params['page'][:required]).to be(false)
     end
 
     it 'does not require :per_page' do
-      expect(params['per_page'][:required]).to eq(false)
+      expect(params['per_page'][:required]).to be(false)
     end
 
     it 'does not require :offset' do
-      expect(params['offset'][:required]).to eq(false)
+      expect(params['offset'][:required]).to be(false)
     end
 
     it 'describes :page' do
