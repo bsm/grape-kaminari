@@ -8,7 +8,7 @@ describe Grape::Kaminari do
   end
 
   def declared_params
-    subject.namespace_stackable(:declared_params).flatten
+    Grape::Validations::ParamsScope::Attr.attrs_keys(subject.namespace_stackable(:declared_params).flatten)
   end
 
   it 'adds to declared parameters' do
@@ -83,7 +83,7 @@ describe Grape::Kaminari do
     end
 
     it 'defaults :per_page to Kaminari.config.default_per_page' do
-      expect(params['per_page'][:default]).to eq(::Kaminari.config.default_per_page)
+      expect(params['per_page'][:default]).to eq(Kaminari.config.default_per_page)
     end
 
     it 'defaults :offset to 0' do
