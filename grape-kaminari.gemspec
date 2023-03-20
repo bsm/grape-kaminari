@@ -19,6 +19,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'grape', '>= 1.6.1'
   spec.add_runtime_dependency 'kaminari-grape'
 
-  spec.add_development_dependency 'bundler'
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
