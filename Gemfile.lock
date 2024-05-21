@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     grape-kaminari (0.4.6)
-      dry-types (<= 2.7.1)
+      dry-types (<= 1.7.1)
       grape (>= 1.6.1)
       kaminari-grape
 
@@ -35,8 +35,7 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-types (1.7.2)
-      bigdecimal (~> 3.0)
+    dry-types (1.7.1)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0)
       dry-inflector (~> 1.0)
