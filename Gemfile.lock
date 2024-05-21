@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     grape-kaminari (0.4.6)
+      dry-types (<= 2.7.1)
       grape (>= 1.6.1)
       kaminari-grape
 

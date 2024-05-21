@@ -19,5 +19,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'grape', '>= 1.6.1'
   spec.add_runtime_dependency 'kaminari-grape'
 
+  spec.add_runtime_dependency 'dry-types', '<= 2.7.1' # 2.7.2 and above require ruby 3.0+
+
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
