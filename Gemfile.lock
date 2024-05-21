@@ -1,24 +1,32 @@
 PATH
   remote: .
   specs:
-    grape-kaminari (0.4.5)
+    grape-kaminari (0.4.6)
       grape (>= 1.6.1)
       kaminari-grape
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (7.0.7.2)
+    activesupport (7.1.3.3)
+      base64
+      bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
+      connection_pool (>= 2.2.5)
+      drb
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
+      mutex_m
       tzinfo (~> 2.0)
     ast (2.4.2)
     base64 (0.1.1)
+    bigdecimal (3.1.8)
     builder (3.2.4)
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.2.3)
+    connection_pool (2.4.1)
     diff-lcs (1.5.0)
-    dry-core (1.0.0)
+    drb (2.2.1)
+    dry-core (1.0.1)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
     dry-inflector (1.0.0)
@@ -26,7 +34,8 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-types (1.7.1)
+    dry-types (1.7.2)
+      bigdecimal (~> 3.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0)
       dry-inflector (~> 1.0)
@@ -39,7 +48,7 @@ GEM
       mustermann-grape (~> 1.0.0)
       rack (>= 1.3.0)
       rack-accept
-    i18n (1.14.1)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     json (2.6.3)
     kaminari-core (1.2.2)
@@ -47,11 +56,12 @@ GEM
       grape
       kaminari-core (~> 1.0)
     language_server-protocol (3.17.0.3)
-    minitest (5.19.0)
+    minitest (5.23.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     mustermann-grape (1.0.2)
       mustermann (>= 1.0.0)
+    mutex_m (0.2.0)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
@@ -118,7 +128,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
-    zeitwerk (2.6.11)
+    zeitwerk (2.6.14)
 
 PLATFORMS
   ruby
